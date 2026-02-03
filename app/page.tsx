@@ -79,6 +79,22 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-[#0F0F12] text-white">
       <div className="max-w-4xl mx-auto px-4 py-8">
+        {/* Brand */}
+        <div className="text-center mb-6">
+          <span className="text-sm font-bold tracking-widest uppercase">
+            <span className="text-[#4F9293]">my</span>
+            <span className="text-[#FF7A1A]">cre</span>
+            <span className="text-[#FF7A1A] font-black text-[12px]" style={{ WebkitTextStroke: '1px #FF7A1A' }}>△</span>
+            <span className="text-[#4F9293]">+</span>
+            <span className="text-[#A295B8]">o</span>
+            <span className="text-[#FF7A1A]">rpl</span>
+            <span className="text-[#FF7A1A] font-black text-[12px]" style={{ WebkitTextStroke: '1px #FF7A1A' }}>△</span>
+            <span className="text-[#FF7A1A]">yb</span>
+            <span className="text-[#A295B8]">oo</span>
+            <span className="text-[#FF7A1A]">k</span>
+          </span>
+        </div>
+
         {/* Hero Section */}
         <div className="mb-8 text-center">
           <h1 className="text-3xl font-bold mb-3">Instagram Content Generator</h1>
