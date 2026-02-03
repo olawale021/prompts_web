@@ -81,14 +81,14 @@ export default function Home() {
       <div className="max-w-4xl mx-auto px-4 py-8">
         {/* Brand */}
         <div className="text-center mb-6">
-          <span className="text-lg font-bold tracking-widest uppercase">
+          <span className="text-2xl sm:text-3xl font-bold tracking-widest uppercase">
             <span className="text-[#4F9293]">my</span>
             <span className="text-[#FF7A1A]">cre</span>
-            <span className="text-[#FF7A1A] font-black text-[15px]" style={{ WebkitTextStroke: '1px #FF7A1A' }}>△</span>
+            <span className="text-[#FF7A1A] font-black text-[20px]" style={{ WebkitTextStroke: '1px #FF7A1A' }}>△</span>
             <span className="text-[#4F9293]">+</span>
             <span className="text-[#A295B8]">o</span>
             <span className="text-[#FF7A1A]">rpl</span>
-            <span className="text-[#FF7A1A] font-black text-[15px]" style={{ WebkitTextStroke: '1px #FF7A1A' }}>△</span>
+            <span className="text-[#FF7A1A] font-black text-[20px]" style={{ WebkitTextStroke: '1px #FF7A1A' }}>△</span>
             <span className="text-[#FF7A1A]">yb</span>
             <span className="text-[#A295B8]">oo</span>
             <span className="text-[#FF7A1A]">k</span>
@@ -97,9 +97,9 @@ export default function Home() {
 
         {/* Hero Section */}
         <div className="mb-8 text-center">
-          <h1 className="text-xl sm:text-3xl font-bold mb-3">Instagram Content Generator</h1>
+          <h1 className="text-lg sm:text-xl font-semibold mb-3 text-zinc-300">Content Generator</h1>
           <p className="text-zinc-400 text-lg mb-4">
-            9 AI-powered tools to create scroll-stopping Instagram content in seconds.
+            Never run out of content ideas again.
           </p>
           <div className="flex flex-wrap justify-center gap-4 text-sm text-zinc-500">
             <span className="flex items-center gap-1">✓ Copy-paste ready content</span>
