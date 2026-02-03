@@ -20,12 +20,12 @@ export async function POST(request: NextRequest) {
       .filter(Boolean)
       .join('\n');
 
-    // Build full prompt - generate all 3 tones at once
+    // Build full prompt - generate all 6 tones at once
     const fullPrompt = `${inputContext}
 
 ${promptConfig.template}
 
-Generate this content in 3 different tones. Format your response EXACTLY like this:
+Generate this content in 6 different tones. Format your response EXACTLY like this:
 
 ===NEUTRAL===
 [Content in a balanced, professional tone]
@@ -34,7 +34,16 @@ Generate this content in 3 different tones. Format your response EXACTLY like th
 [Content in a playful, energetic, friendly tone with personality]
 
 ===SERIOUS===
-[Content in a professional, authoritative, direct tone]`;
+[Content in a professional, authoritative, direct tone]
+
+===CASUAL===
+[Content in a relaxed, conversational tone like talking to a friend]
+
+===BOLD===
+[Content in a confident, bold, assertive tone that commands attention]
+
+===INSPIRING===
+[Content in an inspirational, motivational tone that empowers the reader]`;
 
     // Call OpenAI
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -60,7 +69,7 @@ RULES:
 - If giving multiple options, make each one distinctly different
 - Include specific numbers, formats, or structures when relevant
 - CRITICAL: If the request asks for a specific number (e.g., "10 ideas", "5 captions"), you MUST provide EXACTLY that number for EACH tone. Never give fewer.
-- Always follow the exact format requested with ===NEUTRAL===, ===FUN===, ===SERIOUS=== headers`,
+- Always follow the exact format requested with ===NEUTRAL===, ===FUN===, ===SERIOUS===, ===CASUAL===, ===BOLD===, ===INSPIRING=== headers`,
           },
           {
             role: 'user',
@@ -68,7 +77,7 @@ RULES:
           },
         ],
         temperature: 0.8,
-        max_tokens: 6000,
+        max_tokens: 10000,
       }),
     });
 
@@ -81,15 +90,21 @@ RULES:
     const data = await response.json();
     const generatedText = data.choices[0]?.message?.content || '';
 
-    // Parse the 3 tones from the response
+    // Parse the 6 tones from the response
     const neutralMatch = generatedText.match(/===NEUTRAL===\s*([\s\S]*?)(?====FUN===|$)/);
     const funMatch = generatedText.match(/===FUN===\s*([\s\S]*?)(?====SERIOUS===|$)/);
-    const seriousMatch = generatedText.match(/===SERIOUS===\s*([\s\S]*?)$/);
+    const seriousMatch = generatedText.match(/===SERIOUS===\s*([\s\S]*?)(?====CASUAL===|$)/);
+    const casualMatch = generatedText.match(/===CASUAL===\s*([\s\S]*?)(?====BOLD===|$)/);
+    const boldMatch = generatedText.match(/===BOLD===\s*([\s\S]*?)(?====INSPIRING===|$)/);
+    const inspiringMatch = generatedText.match(/===INSPIRING===\s*([\s\S]*?)$/);
 
     const results = {
       neutral: neutralMatch ? neutralMatch[1].trim() : generatedText,
       fun: funMatch ? funMatch[1].trim() : generatedText,
       serious: seriousMatch ? seriousMatch[1].trim() : generatedText,
+      casual: casualMatch ? casualMatch[1].trim() : generatedText,
+      bold: boldMatch ? boldMatch[1].trim() : generatedText,
+      inspiring: inspiringMatch ? inspiringMatch[1].trim() : generatedText,
     };
 
     return NextResponse.json({ results });

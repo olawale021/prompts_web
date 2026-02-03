@@ -123,6 +123,9 @@ export const toneModifiers = {
   neutral: '',
   fun: 'Use a playful, energetic, and friendly tone with personality.',
   serious: 'Use a professional, authoritative, and direct tone.',
+  casual: 'Use a relaxed, conversational tone like talking to a friend.',
+  bold: 'Use a confident, bold, and assertive tone that commands attention.',
+  inspiring: 'Use an inspirational, motivational tone that empowers the reader.',
 };
 
-export type ToneType = 'neutral' | 'fun' | 'serious';
+export type ToneType = 'neutral' | 'fun' | 'serious' | 'casual' | 'bold' | 'inspiring';
